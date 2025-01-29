@@ -1,0 +1,72 @@
+/* Animation de fade */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+
+/* Style pour le drag and drop */
+.drag-drop-area {
+  border: 2px dashed #007bff;
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.drag-drop-area.dragging {
+  border-color: #28a745;
+  background-color: #e9f5e9;
+}
+
+.drag-drop-area:hover {
+  border-color: #0056b3;
+  background-color: #e2e6ea;
+}
+
+/* Gradient pour le texte */
+.text-gradient {
+  background: linear-gradient(45deg, #007bff, #28a745);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Gradient pour les boutons */
+.btn-gradient {
+  background: linear-gradient(45deg, #007bff, #28a745);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(45deg, #0056b3, #218838);
+  transform: scale(1.05);
+}
+
+/* Animation pour le bouton */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-gradient:active {
+  animation: pulse 0.3s ease;
+}

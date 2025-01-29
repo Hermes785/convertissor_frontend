@@ -1,0 +1,88 @@
+pipeline{
+    agent any
+
+    tools {
+        nodejs:'NodeJS'
+
+    }
+    environment {
+         APP_NAME = "convertissor_frontend_img"
+        DOCKER_IMAGE = "${APP_NAME}:${env.BUILD_ID}"
+        DOCKER_CREDENTIALS_ID = 'docker-hub-credentials'
+    }
+
+    stages{
+        stage ('checkout Code'){
+            steps{
+                checkout scm
+            }
+        }
+        stage('intall dependencies and build'){
+            steps{
+                sh 'npm install'
+                sh 'npm run buils'
+            }
+        }
+        stage('buil image and push to docker registry'){
+             when {
+                expression { env.BRANCH_NAME == 'main' }
+            }
+           steps{
+             script{
+                docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
+                        def fullImageName = "docker.io/hermesn/convertissor_frontend:${env.BUILD_ID}"
+                        echo "Building Docker image ${fullImageName}"
+                        sh "docker build -t ${DOCKER_IMAGE} ."
+                        sh "docker tag ${DOCKER_IMAGE} ${fullImageName}"
+                        sh "docker tag ${DOCKER_IMAGE} docker.io/hermesn/convertissor_frontend:latest"
+                        sh "docker push ${fullImageName}"
+                        sh "docker push docker.io/hermesn/convertissor_frontend:latest"
+
+                        echo "Docker image pushed successfully!"
+                    }
+            }
+            
+           }
+      }
+
+      stage('Deploy to production environment'){
+        steps{
+            script{
+                sh  ''' 
+                     docker stop convertissor_frontend_container || true
+                     docker rm convertissor_frontend_container || true
+                     docker-compose -f convertissor_frontend_container pull
+                     docker-compose -f docker-compose.yml up -d
+                
+                   '''
+
+            }
+        }
+      }
+
+
+        stage('Supresion des images inutiles') {
+            steps {
+                script {
+                    sh 'docker image prune -af'
+                    sh 'docker container prune -f'
+                    sh 'docker volume prune -f'
+                    sh 'docker network prune -f'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Actions post-pipeline en cours...'
+        }
+        success {
+            
+            echo 'Pipeline terminé avec succès!'
+        }
+        failure {
+            echo 'Échec du pipeline. Vérifiez les journaux pour plus de détails.'
+        }
+    }
+}

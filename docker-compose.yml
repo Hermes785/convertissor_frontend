@@ -1,0 +1,23 @@
+services:
+  convertissor_frontend:
+    container_name: convertissor_frontend_container
+    image: hermesn/convertissor_frontend:latest
+    restart: always
+    ports:
+      - 3200:80
+    environment:
+      NODE_ENV: production
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.convertissor_frontend.rule=host(`convertisseur.mia-services.fr`) "
+      - "traefik.http.routers.convertissor_frontend.entrypoints=websecure"
+      - "traefik.http.routers.convertissor_frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.convertissor_frontend.loadbalancer.server.port=80"
+      - "traefik.http.routers.convertissor_frontend.tls.certresolver=myresolver"
+
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    external: true
