@@ -20,7 +20,7 @@ pipeline{
         stage('intall dependencies and build'){
             steps{
                 sh 'npm install'
-                sh 'npm run buils'
+                sh 'npm run build'
             }
         }
         stage('buil image and push to docker registry'){
