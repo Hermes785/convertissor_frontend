@@ -51,7 +51,7 @@ pipeline{
                 sh  ''' 
                      docker stop convertissor_frontend_container || true
                      docker rm convertissor_frontend_container || true
-                     docker-compose -f convertissor_frontend_container pull
+                     docker-compose -f docker-compose.yml pull
                      docker-compose -f docker-compose.yml up -d
                 
                    '''
