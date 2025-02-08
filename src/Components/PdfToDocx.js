@@ -5,8 +5,8 @@ import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import '../Css/PdfToDocx.css';
 import DragDrop from './DragDrop';
-import getApiUrls from '../APi/api';
 
+import getApiUrls from '../Backend/api';
 
 const PdfToDocx = () => {
     const [selectedFile, setSelectedFile] = useState(null);
