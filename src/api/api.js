@@ -1,6 +1,3 @@
-
-
-
 const getApiUrls = () => {
 
     const apiConvertToDocx = 'https://convertisseur-api.mia-services.fr/api/convertPdfToDocx'
