@@ -5,7 +5,8 @@ import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import '../Css/PdfToDocx.css';
 import DragDrop from './DragDrop';
-import Api from '../../api/api';
+import getApiUrls from '../APi/api';
+
 
 const PdfToDocx = () => {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -29,7 +30,7 @@ const PdfToDocx = () => {
         formData.append('file', selectedFile);
 
         try {
-            const response = await axios.post(Api().apiConvertToDocx, formData);
+            const response = await axios.post(getApiUrls().apiConvertToDocx, formData);
 
             if (response.status === 200) {
                 toast.success('Fichier téléchargé avec succès. Conversion en cours...');
@@ -51,7 +52,7 @@ const PdfToDocx = () => {
     const checkConversionStatus = async (requestId) => {
         try {
             console.log("Vérification de la conversion pour ID:", requestId);
-            const response = await axios.get(`${Api().apiSendUrl}/${requestId}`);
+            const response = await axios.get(`${getApiUrls().apiSendUrl}/${requestId}`);
 
             if (response.status === 200) {
                 setConversionResult(response.data);

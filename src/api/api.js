@@ -1,4 +1,7 @@
-const Api = () => {
+
+
+
+const getApiUrls = () => {
 
     const apiConvertToDocx = 'https://convertisseur-api.mia-services.fr/api/convertPdfToDocx'
     const apiSendUrl = 'https://convertisseur-api.mia-services.fr/api/urlFile'
@@ -6,4 +9,4 @@ const Api = () => {
 
 
 }
-export default Api
+export default getApiUrls
