@@ -19,39 +19,46 @@
 
 /* Style pour le drag and drop */
 .drag-drop-area {
-  border: 2px dashed #007bff;
-  background-color: #f8f9fa;
+  border: 2px dashed #ff7e5f;
+  background: linear-gradient(135deg, #f8f9fa, #e3eaf0);
   transition: all 0.3s ease;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .drag-drop-area.dragging {
   border-color: #28a745;
-  background-color: #e9f5e9;
+  background: linear-gradient(135deg, #e9f5e9, #c8e6c9);
 }
 
 .drag-drop-area:hover {
-  border-color: #0056b3;
-  background-color: #e2e6ea;
+  border-color: #d9534f;
+  background: linear-gradient(135deg, #e2e6ea, #d6dde3);
 }
 
 /* Gradient pour le texte */
 .text-gradient {
-  background: linear-gradient(45deg, #007bff, #28a745);
+  background: linear-gradient(45deg, #007bff, #ff7e5f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-weight: bold;
 }
 
 /* Gradient pour les boutons */
 .btn-gradient {
-  background: linear-gradient(45deg, #007bff, #28a745);
+  background: linear-gradient(45deg, #007bff, #ff7e5f);
   border: none;
   color: white;
   transition: all 0.3s ease;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
 }
 
 .btn-gradient:hover {
-  background: linear-gradient(45deg, #0056b3, #218838);
-  transform: scale(1.05);
+  background: linear-gradient(45deg, #0056b3, #d9534f);
+  transform: scale(1.08);
 }
 
 /* Animation pour le bouton */
@@ -69,4 +76,54 @@
 
 .btn-gradient:active {
   animation: pulse 0.3s ease;
+}
+
+/* Cartes avec dégradé */
+.card-gradient {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: white;
+  transition: all 0.3s ease;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card-gradient:hover {
+  background: linear-gradient(135deg, #feb47b, #ff7e5f);
+  transform: scale(1.05);
+}
+
+/* Animation d'apparition pour les cartes */
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.card-gradient {
+  animation: slide-up 0.5s ease-in-out;
+}
+
+/* Arrière-plan général */
+body {
+  background: linear-gradient(135deg, #eef2f3, #d6dde3);
+  font-family: "Arial", sans-serif;
+}
+
+/* Conteneur principal */
+.container {
+  padding: 40px 20px;
+}
+
+/* Pied de page */
+.footer {
+  background: #343a40;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
 }
