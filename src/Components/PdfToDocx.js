@@ -67,7 +67,11 @@ const PdfToDocx = () => {
         <>
             <Navbar className="navbar-custom shadow" expand="lg">
                 <Container>
-                    <Navbar.Brand className="brand-title">📄 PDF Convertisseur</Navbar.Brand>
+                    <Navbar.Brand className="brand-title" style={{ display: "flex", alignItems: "center" }}>
+                        <img src="/lo.jpg" alt="logo" style={{ height: "40px", marginRight: "5px" }} />
+                        <span>PDF Convertisseur</span>
+                    </Navbar.Brand>
+
                     <Nav className="ml-auto">
                         <Nav.Link href="#">Accueil</Nav.Link>
                         <Nav.Link href="#features">Fonctionnalités</Nav.Link>

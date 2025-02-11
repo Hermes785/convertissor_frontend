@@ -80,7 +80,11 @@
 
 /* Cartes avec dégradé */
 .card-gradient {
-  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  background: linear-gradient(
+    135deg,
+    rgb(144, 238, 144),
+    rgb(173, 216, 230)
+  ); /* Vert clair → Bleu ciel */
   color: white;
   transition: all 0.3s ease;
   padding: 20px;
@@ -88,7 +92,11 @@
 }
 
 .card-gradient:hover {
-  background: linear-gradient(135deg, #feb47b, #ff7e5f);
+  background: linear-gradient(
+    135deg,
+    rgb(173, 216, 230),
+    rgb(144, 238, 144)
+  ); /* Inversion du dégradé */
   transform: scale(1.05);
 }
 
